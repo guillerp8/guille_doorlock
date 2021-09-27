@@ -1,0 +1,36 @@
+.main-frame {
+    position: absolute;
+    right: 40px;
+    top: 25%;
+}
+
+.container {
+    position: relative;
+    width: 180px;
+    min-height: 50px;
+    height: auto;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.835);
+}
+
+.text {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    left: 50%;
+    width: 100%;
+    font-size: 0.7vw;
+    top: 50%;
+}
+
+.blue {color: #86e3ff;}
+.red {color: #ff0000;}
+.green {color: #00ff22;}
+.yellow {color: #fffb00;} 
+.purple {color: #e19fff;}
+.grey {color: #cfcfcf;}
+.darkgrey {color: #8d8d8d;}
+.black {color: #000000;}
+.gold {color: #e0d100;}
