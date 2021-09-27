@@ -30,6 +30,10 @@ Use the command /deletedoor aiming to the door, it may not work at first try.
 
 Set in true use old esx in config.
 
+- "<" error?
+
+Update your artifacts because the resource uses lua 5.4 .
+
 # Credits
 
 - Readme inspired by Bombay (Entity Evolution)
