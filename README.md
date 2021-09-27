@@ -8,7 +8,7 @@ This project does not contain a license, therefore you are not allowed to add on
 
 ### Requirements
 
-- ESX legacy or > 1.2 .
+- ESX legacy or deprecated versions setting true the old ESX config.
 
 ### Installation
 1) Download from the releases tab.
