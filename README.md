@@ -26,6 +26,10 @@ Use the command /door to create a door, if you are creating a double door be sur
 
 Use the command /deletedoor aiming to the door, it may not work at first try.
 
+- Export error
+
+Set in true use old esx in config.
+
 # Credits
 
 - Readme inspired by Bombay (Entity Evolution)
