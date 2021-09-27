@@ -26,3 +26,6 @@ Use the command /door to create a door, if you are creating a double door be sur
 
 Use the command /deletedoor aiming to the door, it may not work at first try.
 
+# Credits
+
+- Readme inspired by Bombay (Entity Evolution)
