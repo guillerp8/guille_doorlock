@@ -212,7 +212,7 @@ addDoor = function(type, dist, jobs, pin)
                 local hit, coords, entity = RayCastGamePlayCamera(5000.0)   
                 if IsEntityAnObject(entity) then
                     ESX['ShowHelpNotification']("Press ~INPUT_CONTEXT~ to add the door")
-                    DrawLine(_coords, coords, 0, 0, 0, 255)
+                    DrawLine(_coords, coords, 0, 255, 34, 255)
                     if showedEntity ~= entity then
                         SetEntityDrawOutline(showedEntity, false)
                         showedEntity = entity
