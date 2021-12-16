@@ -314,7 +314,7 @@ _CreateThread(function()
             local _ped = PlayerPedId()
             local _coords = GetEntityCoords(_ped)
             
-            if v['_type'] ~= "double" then
+            if v['_type'] == "normal" then
                 local _doorCoords = vector3(v['doorCoords']['x'], v['doorCoords']['y'], v['doorCoords']['z'])
                 local _distTo = #(_coords - _doorCoords)
                 if _distTo < 30 then
@@ -363,7 +363,7 @@ _CreateThread(function()
 
                     _wait = 120
                 end
-            else
+            elseif v['_type'] == "double" then
                 local _doorCoords = vector3(v['_doorsDouble'][1]['coords']['x'], v['_doorsDouble'][1]['coords']['y'], v['_doorsDouble'][1]['coords']['z'])
                 local _doorCoords2 = vector3(v['_doorsDouble'][2]['coords']['x'], v['_doorsDouble'][2]['coords']['y'], v['_doorsDouble'][2]['coords']['z'])
                 local _distTo = #(_coords - vector3(v['_textCoords']['x'], v['_textCoords']['y'], v['_textCoords']['z']))
@@ -419,6 +419,60 @@ _CreateThread(function()
                         end
                         _wait = 120
                     end
+                end
+            else 
+                local _doorCoords = vector3(v['doorCoords']['x'], v['doorCoords']['y'], v['doorCoords']['z'])
+                local _distTo = #(_coords - _doorCoords)
+                if _distTo < 30 then
+                    door = GetClosestObjectOfType(v['doorCoords']['x'], v['doorCoords']['y'], v['doorCoords']['z'], 1.0, v["_doorModel"], false, false, false)
+                    if not IsDoorRegisteredWithSystem(v['_doorModel'].. "door"..k) then
+                        AddDoorToSystem(v['_doorModel'].. "door"..k, v['_doorModel'], _doorCoords, false, false, false)
+                        print(k.. " - Slider Registered")
+                    end
+                    if _doorState[k] ~= nil then
+                        DoorSystemSetDoorState(v['_doorModel'].. "door"..k, 0, false, false) 
+                        DoorSystemSetAutomaticDistance(v['_doorModel'].. "door"..k, 30.0, false, false)
+                    else
+                        DoorSystemSetAutomaticDistance(v['_doorModel'].. "door"..k, 0.0, false, false)
+                        DoorSystemSetDoorState(v['_doorModel'].. "door"..k, 4, false, false)
+                    end
+                end
+                if _distTo < v['dist'] then
+                    door = GetClosestObjectOfType(v['doorCoords']['x'], v['doorCoords']['y'], v['doorCoords']['z'], 1.0, v["_doorModel"], false, false, false)
+                    _coordsToShow = vector3(v['_textCoords']['x'], v['_textCoords']['y'], v['_textCoords']['z'])
+                    isNearToDoor = true
+                    _selectedDoorJobs = v['jobs']
+                    if v['usePin'] then
+                        pin = v['pin']
+                    else
+                        pin = nil
+                    end
+                    if v['useitem'] then
+                        object = v['item']
+                    else
+                        object = nil
+                    end
+                    if _doorState[k] ~= nil then
+                        text = Config["strings"]['close']
+                        DoorSystemSetDoorState(v['_doorModel'].. "door"..k, 0, false, false) 
+                        DoorSystemSetAutomaticDistance(v['_doorModel'].. "door"..k, 30.0, false, false)
+                        if pulsed then
+                            TriggerServerEvent("guille_doorlock:server:updateDoor", k, nil)
+                            animatePlyDoor()
+                            pulsed = false
+                        end
+                    else
+                        DoorSystemSetDoorState(v['_doorModel'].. "door"..k, 4, false, false)
+                        DoorSystemSetAutomaticDistance(v['_doorModel'].. "door"..k, 0.0, false, false)
+                        text = Config["strings"]['open']
+                        if pulsed then
+                            TriggerServerEvent("guille_doorlock:server:updateDoor", k, "locked")
+                            animatePlyDoor()
+                            pulsed = false
+                        end
+                    end
+
+                    _wait = 120
                 end
             end
         end
