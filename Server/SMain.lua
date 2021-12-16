@@ -35,8 +35,8 @@ _CreateThread(function()
         else
             print(name .. " is updated.")
             print(name.. [[
-                Update 1.1:
-                - Now you can unlock a door with an item!
+                Update 1.2:
+                - Slider doords improved
             ]])
         end
     end
