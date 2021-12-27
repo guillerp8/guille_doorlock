@@ -35,8 +35,9 @@ _CreateThread(function()
         else
             print(name .. " is updated.")
             print(name.. [[
-                Update 1.2:
-                - Slider doords improved
+                Update 1.3:
+                - Delete door command updated
+                - JSON formatted to better configuration
             ]])
         end
     end
@@ -77,7 +78,7 @@ _RegisterServerEvent("guille_doorlock:server:addDoor", function(_doorCoords, _do
             item = item
         }
         table['insert'](doors, tableToIns)
-        SaveResourceFile(GetCurrentResourceName(), "Server/Files/Doors.json", json['encode'](doors), -1)
+        SaveResourceFile(GetCurrentResourceName(), "Server/Files/Doors.json", json['encode'](doors, { indent = true }), -1)
         TriggerClientEvent("guille_doorlock:client:refreshDoors", -1, tableToIns)
     end
 end)
@@ -101,7 +102,7 @@ _RegisterServerEvent("guille_doorlock:server:addDoubleDoor", function(_doorsDobu
             pin = pin,
         }
         table['insert'](doors, tableToIns)
-        SaveResourceFile(GetCurrentResourceName(), "Server/Files/Doors.json", json['encode'](doors), -1)
+        SaveResourceFile(GetCurrentResourceName(), "Server/Files/Doors.json", json['encode'](doors, { indent = true }), -1)
         TriggerClientEvent("guille_doorlock:client:refreshDoors", -1, tableToIns)
     end
 end)
