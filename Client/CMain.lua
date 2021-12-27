@@ -175,7 +175,15 @@ RegisterNetEvent("guille_doorlock:client:deleteDoor", function()
 
             DrawLine(_coords, coords, 255, 0, 0, 255)
             ESX['ShowHelpNotification']("Press ~INPUT_CONTEXT~ to remove the door")
-
+            for k, v in pairs(_enabledDoors) do
+                if v['_type'] ~= "double" then
+                    local _doorCoords = vector3(v['doorCoords']['x'], v['doorCoords']['y'], v['doorCoords']['z'])
+                    DrawMarker(28, _doorCoords, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 0.18, 0.18, 0.18, 255, 0, 0, 255, false, true, 2, nil, nil, false)
+                else
+                    local _doorCoords = vector3(v['_textCoords']['x'], v['_textCoords']['y'], v['_textCoords']['z'])
+                    DrawMarker(28, _doorCoords, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 0.18, 0.18, 0.18, 255, 0, 0, 255, false, true, 2, nil, nil, false)
+                end
+            end
             if IsControlJustPressed(1, 38) then
                 for k, v in pairs(_enabledDoors) do
                     if v['_type'] ~= "double" then
@@ -186,7 +194,7 @@ RegisterNetEvent("guille_doorlock:client:deleteDoor", function()
                             _found = true
                         end
                     else
-                        local _doorCoords = vector3(v['_doorsDouble'][1]['coords']['x'], v['_doorsDouble'][1]['coords']['y'], v['_doorsDouble'][1]['coords']['z'])
+                        local _doorCoords = vector3(v['_textCoords']['x'], v['_textCoords']['y'], v['_textCoords']['z'])
                         local _distTo = #(coords - _doorCoords)
                         if _distTo < 1 then
                             TriggerServerEvent("guille_doorlock:server:syncRemove", k)
