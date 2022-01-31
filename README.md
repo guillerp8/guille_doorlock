@@ -20,11 +20,11 @@ This project does not contain a license, therefore you are not allowed to add on
 
 - Creating a door
 
-Use the command /door to create a door, if you are creating a double door be sure of aiming to a correct spot before confirm to be sure that you setted correctly the door.
+Use the command /door (or change it in the config) to create a door, if you are creating a double door be sure of aiming to a correct spot before confirm to be sure that you setted correctly the door.
 
 - Deleting a door
 
-Use the command /deletedoor aiming to the door, it may not work at first try.
+Use the command /deletedoor (or change it in the config) aiming to the door, it may not work at first try.
 
 - Export error
 
