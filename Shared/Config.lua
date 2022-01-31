@@ -4,7 +4,7 @@ Config['usingOldESX'] = false
 
 Config['enableNuiIndicator'] = true
 
-Config['scriptVersion'] = 1.4
+Config['scriptVersion'] = 1.5
 
 Config['admingroups'] = {
     "admin",
