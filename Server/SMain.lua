@@ -35,7 +35,7 @@ _CreateThread(function()
         else
             print(name .. " is updated.")
             print(name.. [[
-                Update 1.4:
+                Update 1.5:
                 - Bugfix on items with door
                 - Change the commands in the config
             ]])
