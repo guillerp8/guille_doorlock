@@ -66,10 +66,10 @@ RegisterNetEvent("guille_doorlock:client:setUpDoor", function()
                 local v = data2['current']['value']
                 _doorType = v
                 menu2['close']()
-                ExecuteCommand("door")
+                ExecuteCommand(Config['commands'].CreateDoor)
             end, function(data2, menu2)
                 menu2['close']()
-                ExecuteCommand("door")
+                ExecuteCommand(Config['commands'].CreateDoor)
             end)
         elseif v == "doordist" then
             ESX['UI']['Menu']['Open']('dialog', GetCurrentResourceName(), 'dist_to_door', {
@@ -77,15 +77,15 @@ RegisterNetEvent("guille_doorlock:client:setUpDoor", function()
             }, function(data2, menu2)
                 local dist = tonumber(data2['value'])
                 if dist == nil then
-                    ESX['ShowNotification']('Invalid distance, try again')
-                else
+                ESX['ShowNotification']('Invalid distance, try again')
+				else
                     menu2['close']()
                     _distToDoor = dist
-                    ExecuteCommand("door")
+                    ExecuteCommand(Config['commands'].CreateDoor)
                 end
             end, function(data2, menu2)
                 menu2['close']()
-                ExecuteCommand("door")
+                ExecuteCommand(Config['commands'].CreateDoor)
             end)
         elseif v == "addjob" then
             ESX['UI']['Menu']['Open']('dialog', GetCurrentResourceName(), 'new_job', {
@@ -98,13 +98,13 @@ RegisterNetEvent("guille_doorlock:client:setUpDoor", function()
                     menu2['close']()
                     table['insert'](allowedJobs, job)
                     ESX['UI']['Menu']['CloseAll']()
-                    ExecuteCommand("door")
+                    ExecuteCommand(Config['commands'].CreateDoor)
                     
                 end
             end, function(data2, menu2)
                 menu2['close']()
                 ESX['UI']['Menu']['CloseAll']()
-                ExecuteCommand("door")
+                ExecuteCommand(Config['commands'].CreateDoor)
             end)
         elseif v == "conf" then
             addDoor(_doorType, _distToDoor, allowedJobs, doorPin, item)
@@ -123,12 +123,12 @@ RegisterNetEvent("guille_doorlock:client:setUpDoor", function()
                 else
                     doorPin = pin
                     ESX['UI']['Menu']['CloseAll']()
-                    ExecuteCommand("door")
+                    ExecuteCommand(Config['commands'].CreateDoor)
                 end
             end, function(data2, menu2)
                 menu2['close']()
                 ESX['UI']['Menu']['CloseAll']()
-                ExecuteCommand("door")
+                ExecuteCommand(Config['commands'].CreateDoor)
             end)
         elseif v == "dooritem" then
             ESX['UI']['Menu']['Open']('dialog', GetCurrentResourceName(), 'new_jobitem', {
@@ -140,12 +140,12 @@ RegisterNetEvent("guille_doorlock:client:setUpDoor", function()
                 else
                     item = pin
                     ESX['UI']['Menu']['CloseAll']()
-                    ExecuteCommand("door")
+                    ExecuteCommand(Config['commands'].CreateDoor)
                 end
             end, function(data2, menu2)
                 menu2['close']()
                 ESX['UI']['Menu']['CloseAll']()
-                ExecuteCommand("door")
+                ExecuteCommand(Config['commands'].CreateDoor)
             end)
         else
             for key, val in pairs(allowedJobs) do
@@ -154,7 +154,7 @@ RegisterNetEvent("guille_doorlock:client:setUpDoor", function()
                 end
             end
             menu['close']()
-            ExecuteCommand("door")
+            ExecuteCommand(Config['commands'].CreateDoor)
         end
     end, function(data, menu) 
         menu['close']() 
