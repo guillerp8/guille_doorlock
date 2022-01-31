@@ -4,12 +4,17 @@ Config['usingOldESX'] = false
 
 Config['enableNuiIndicator'] = true
 
-Config['scriptVersion'] = 1.3
+Config['scriptVersion'] = 1.4
 
 Config['admingroups'] = {
     "admin",
     "superadmin",
     "mod"
+}
+
+Config['commands'] = {
+    ['CreateDoor'] = "door",
+    ['RemoveDoor'] = "deletedoor"
 }
 
 Config["strings"] = {

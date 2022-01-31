@@ -9,7 +9,8 @@ local text = ""
 
 -- Configuration vars
 
-TriggerEvent("chat:addSuggestion", "/door", ("Add a door"), {})
+TriggerEvent("chat:addSuggestion", Config['commands'].CreateDoor, ("Add a door"), {})
+TriggerEvent("chat:addSuggestion", Config['commands'].RemoveDoor, ("Remove a door"), {})
 
 ESX = ESX
 
@@ -292,7 +293,7 @@ addDoor = function(type, dist, jobs, pin, item)
                                 SetEntityDrawOutline(v, false)
                             end
                             entities = {}
-                            TriggerServerEvent("guille_doorlock:server:addDoubleDoor", _doorsDobule, type, _textCoords, dist, jobs, pin)
+                            TriggerServerEvent("guille_doorlock:server:addDoubleDoor", _doorsDobule, type, _textCoords, dist, jobs, pin, item)
                             _doorsDobule = {}
                             break
                         else

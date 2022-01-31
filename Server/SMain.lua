@@ -35,9 +35,9 @@ _CreateThread(function()
         else
             print(name .. " is updated.")
             print(name.. [[
-                Update 1.3:
-                - Delete door command updated
-                - JSON formatted to better configuration
+                Update 1.4:
+                - Bugfix on items with door
+                - Change the commands in the config
             ]])
         end
     end
@@ -83,14 +83,18 @@ _RegisterServerEvent("guille_doorlock:server:addDoor", function(_doorCoords, _do
     end
 end)
 
-_RegisterServerEvent("guille_doorlock:server:addDoubleDoor", function(_doorsDobule, type, _textCoords, dist, jobs, pin)
+_RegisterServerEvent("guille_doorlock:server:addDoubleDoor", function(_doorsDobule, type, _textCoords, dist, jobs, pin, item)
     local _src <const> = source
     if isAllowed(_src) then
         local doors = LoadResourceFile(GetCurrentResourceName(), "Server/Files/Doors.json")
         doors = json.decode(doors)
+        local useitem = false
         local usePin = false
         if pin ~= "" then
             usePin = true
+        end
+        if item ~= "" then
+            useitem = true
         end
         local tableToIns <const> = {
             _doorsDouble = _doorsDobule,
@@ -100,6 +104,8 @@ _RegisterServerEvent("guille_doorlock:server:addDoubleDoor", function(_doorsDobu
             jobs = jobs,
             usePin = usePin,
             pin = pin,
+            useitem = useitem,
+            item = item,
         }
         table['insert'](doors, tableToIns)
         SaveResourceFile(GetCurrentResourceName(), "Server/Files/Doors.json", json['encode'](doors, { indent = true }), -1)
@@ -123,14 +129,14 @@ _RegisterServerEvent("guille_doorlock:server:syncRemove", function(id)
     end
 end)
 
-RegisterCommand("door", function(source, args)  
+RegisterCommand(Config['commands'].CreateDoor, function(source, args)  
     local _src <const> = source
     if isAllowed(_src) then
         TriggerClientEvent("guille_doorlock:client:setUpDoor", _src)
     end 
 end, false)
 
-RegisterCommand("deletedoor", function(source, args)  
+RegisterCommand(Config['commands'].RemoveDoor, function(source, args)  
     local _src <const> = source
     if isAllowed(_src) then
         TriggerClientEvent("guille_doorlock:client:deleteDoor", _src)
