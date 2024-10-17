@@ -1,7 +1,7 @@
 # guille_doorlock
 A simple resource to create in-game doorlocks.
 
-### [Discord](https://discord.gg/eBpmkW6e5j)
+### [Discord](https://discord.gg/nwS6PWxZEs)
 
 # Where is the script?
 
